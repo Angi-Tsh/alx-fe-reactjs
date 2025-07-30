@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import { useRecipeStore } from './components/recipeStore'
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
 import AddRecipeForm from './components/AddRecipeForm'
 import RecipeList from './components/RecipeList'
-import { useRecipeStore } from './components/recipeStore'
-
+import RecipeDetails from './components/RecipeDetails'
+import EditRecipeForm from './components/EditRecipeForm'  
 
 function App() {
   const [count, setCount] = useState(0)
