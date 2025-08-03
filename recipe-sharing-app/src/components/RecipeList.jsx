@@ -1,19 +1,44 @@
 // RecipeList component
-  import { useRecipeStore } from './recipeStore';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useRecipeStore } from './recipeStore';
+import SearchBar from './SearchBar';
 
   const RecipeList = () => {
     const recipes = useRecipeStore(state => state.recipes);
+    // Select the filtered recipes and the search term from the store
+  const filteredRecipes = useRecipeStore(state => state.filteredRecipes);
+  const searchTerm = useRecipeStore(state => state.searchTerm);
+
 
     return (
-      <div>
-        {recipes.map(recipe => (
-          <div key={recipe.id}>
-            <h3>{recipe.title}</h3>
-            <p>{recipe.description}</p>
-          </div>
-        ))}
-      </div>
-    );
-  };
+      <div style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
+        <h1>Recipe sharing:</h1>
+         {/* Include the search bar to allow the user to filter */}
+      <SearchBar />
 
-  export default RecipeList;
+      <h2>Available Recipes</h2>
+
+        {/* Conditional rendering for no results */}
+      {searchTerm !== '' && filteredRecipes.length === 0 ? (
+        <p>No recipes match your search criteria.</p>
+      ) : (
+        <ul style={{ listStyle: 'none', padding: 0 }}>
+          {/* Map directly over the filteredRecipes array to show the filtered list */}
+          {filteredRecipes.map((recipe) => (
+            <li key={recipe.id} style={{ border: '1px solid #ccc', padding: '15px', marginBottom: '10px', borderRadius: '5px' }}>
+              <h3>
+                <Link to={`/recipes/${recipe.id}`} style={{ textDecoration: 'none', color: '#007bff' }}>
+                  {recipe.name}
+                </Link>
+              </h3>
+              <p>{recipe.description}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default RecipeList;
