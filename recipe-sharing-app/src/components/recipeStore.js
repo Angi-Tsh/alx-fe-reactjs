@@ -11,6 +11,8 @@ const useRecipeStore = create((set, get) => ({
   ],
   searchTerm: '',
   filteredRecipes: [],
+  recommendedRecipes: [], 
+  favorites: [],
 
   // --- ACTIONS ---
 
@@ -28,7 +30,39 @@ const useRecipeStore = create((set, get) => ({
     );
     set({ filteredRecipes: filtered });
   },
+ // ---Action to add favorites and recommendations
 
+  addFavorite: (recipeId) =>
+    set(state => ({
+      favorites: state.favorites.includes(recipeId)
+        ? state.favorites
+        : [...state.favorites, recipeId],
+    })),
+
+  removeFavorite: (recipeId) =>
+    set(state => ({
+      // Remove the recipeId from the favorites array
+      favorites: state.favorites.filter(id => id !== recipeId),
+    })),
+
+  generateRecommendations: () =>
+    set(state => {
+      // Get a list of all recipe IDs that are not in favorites
+      const nonFavoriteRecipes = state.recipes.filter(
+        recipe => !state.favorites.includes(recipe.id)
+      );
+      
+    // A simple mock recommendation system: pick 2 random recipes that aren't favorites
+      const numRecommendations = 2;
+      const recommended = [];
+      while (recommended.length < numRecommendations && nonFavoriteRecipes.length > 0) {
+        const randomIndex = Math.floor(Math.random() * nonFavoriteRecipes.length);
+        const randomRecipe = nonFavoriteRecipes.splice(randomIndex, 1)[0];
+        recommended.push(randomRecipe);
+      }
+
+      return { recommendations: recommended };
+    }),
 }));
 
 export default useRecipeStore;

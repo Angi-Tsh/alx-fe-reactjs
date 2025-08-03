@@ -2,7 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useRecipeStore } from './recipeStore';
+import FavoritesList from './FavoritesList';
+import RecommendationsList from './RecommendationsList';
 import SearchBar from './SearchBar';
+
 
   const RecipeList = () => {
     const recipes = useRecipeStore(state => state.recipes);
@@ -37,6 +40,11 @@ import SearchBar from './SearchBar';
           ))}
         </ul>
       )}
+
+       <hr style={{ margin: '40px 0' }} />
+      {/* Place FavoritesList and RecommendationsList  */}
+      <FavoritesList />
+      <RecommendationsList />
     </div>
   );
 };
