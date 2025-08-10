@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const GITHUB_API_URL = "https://api.github.com";
+const GITHUB_API_URL = "https://api.github.com/search/users?q";
 
 // Function to fetch multiple users based on search criteria
 export const fetchUserData = async (username, location, minRepos) => {
