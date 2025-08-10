@@ -11,10 +11,10 @@ import { data } from 'react-router-dom';
 function App() {
   return (
     <div className="app-container">
-      <h1>GitHub User Search</h1>
+
       <Search />
     </div>
   );
 }
-
+s
 export default App;
