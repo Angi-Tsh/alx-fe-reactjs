@@ -18,10 +18,10 @@ const Search = () => {
             if (data) {
                 setUserData(data);
             } else {
-                setError("Looks like we can't find the user.");
+                setError("Looks like we can't find the user");
             }
         } catch (err) {
-            setError("Looks like we can't find the user.");
+            setError("Looks like we can't find the user");
         } finally {
             setIsLoading(false);
         }
