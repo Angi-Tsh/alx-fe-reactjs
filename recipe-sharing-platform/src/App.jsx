@@ -1,6 +1,6 @@
 import react from "react";
-import HomePage from "./src/components/HomePage";
-import RecipeDetail from "./src/components/RecipeDetail";
+import HomePage from "./components/HomePage";
+import RecipeDetail from "./components/RecipeDetail";
 
 export default function App() {
   return (
