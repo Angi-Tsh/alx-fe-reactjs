@@ -5,9 +5,10 @@ import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 
 export default function App() {
   return (
-    <>
-    <HomePage />
-    <RecipeDetail />
-    </>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/recipes/:id" element={<RecipeDetail/>}/>
+    </Routes>
+    </BrowserRouter>
   )
 }

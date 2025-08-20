@@ -1,7 +1,9 @@
 import React, {useState, useEffect } from "react";
+import { useParams } from "react-router-dom"; // Import useParams to get the recipe ID from the URL
 
-function RecipeDetail ({id}) { //id to be used to fetch specific recipe details as a prop.
+function RecipeDetail () { //id will not be used as a prop,as we will use useParams.
     const [recipe, setRecipe] = useState(null);   
+    const { id } = useParams(); // Get the recipe ID from the URL parameters
 
     useEffect (() =>{
         fetch("/src/data.json")
@@ -12,7 +14,7 @@ function RecipeDetail ({id}) { //id to be used to fetch specific recipe details 
             return response.json();
         })
         .then (data => {//Find the recipe by id
-            const foundRecipe = data.find(recipe => recipe.id === id)
+            const foundRecipe = data.find(recipe => recipe.id === Number(id))
             setRecipe(foundRecipe);})
         .catch(error => console.error("Error fetching recipe:", error));
     }, [id]); // id is assumed to be passed as a prop or obtained from route params 
@@ -24,6 +26,8 @@ function RecipeDetail ({id}) { //id to be used to fetch specific recipe details 
                     <h2 className="text-2xl font-bold mb-4">{recipe.title}</h2>
                     <img src={recipe.image} alt={recipe.title} className="w-full sm:h-48 md:h-64 lg:h-80 rounded-lg mb-12" />
                     <p className="text-gray-700 mb-4">{recipe.summary}</p>
+                    <p className="text-gray-700 mb-4"><strong>Ingredients:</strong></p>
+                    <p className="text-gray-700 mb-4">{recipe.ingredients}</p>
                 </div>
             ) : (
                 <p className="text-black-700 mb-4">Recipe loading ...</p>
