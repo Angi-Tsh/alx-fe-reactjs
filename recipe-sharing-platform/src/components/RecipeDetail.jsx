@@ -28,6 +28,8 @@ function RecipeDetail () { //id will not be used as a prop,as we will use usePar
                     <p className="text-gray-700 mb-4">{recipe.summary}</p>
                     <p className="text-gray-700 mb-4"><strong>Ingredients:</strong></p>
                     <p className="text-gray-700 mb-4">{recipe.ingredients}</p>
+                    <p className="text-gray-700 mb-4"><strong>Instructions:</strong></p>
+                    <p className="text-gray-700 mb-4">{recipe.instructions}</p>
                 </div>
             ) : (
                 <p className="text-black-700 mb-4">Recipe loading ...</p>
