@@ -1,7 +1,7 @@
 import react from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
-
+import AddRecipeForm from "./AddRecipeForm";
 
 
 function HomePage() { 
@@ -37,6 +37,8 @@ function HomePage() {
                 </li>
             ))}
             </ul>
+
+            <AddRecipeForm /> {/* AddRecipeForm component to allow users to add new recipes */}
             </div>
         ) : (
             <p>Loading recipes...</p> //If recipes is null, we display a loading message
