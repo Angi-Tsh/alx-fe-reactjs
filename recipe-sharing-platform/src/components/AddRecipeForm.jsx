@@ -4,16 +4,16 @@ function AddRecipeForm () {
     const [title, setTitle] = useState ('');
     const [ingredients, setIngredients] = useState('');
     const [steps, SetSteps] = useState('');
-    const [error, setError] = useState('');
+    const [errors, setErrors] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault (); //Prevents default form submission 
         //Make sure there are at least two ingredients
     const IngredientsArray = ingredients.split(',').filter(item => item.trim()!==''); //Splits the ingredients string into an array, removing any empty items
             if (IngredientsArray.length < 2) {
-                setError('Please enter at least two ingredients.');}
+                setErrors('Please enter at least two ingredients.');}
             else {
-                setError('');} //Clear error if the validation passes
+                setErrors('');} //Clear error if the validation passes
         
         //Log the recipe data to the console if validation passes, clear erros and logs data.
     console.log ("Recipe added:", { title, ingredients: IngredientsArray, steps });
@@ -36,10 +36,10 @@ function AddRecipeForm () {
                 className="border border-gray-300 p-2 rounded mb-4 w-full" 
             />
             
-            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {errors && <p className="text-red-500 mb-4">{errors}</p>}
         
             <textarea value={steps} onChange={(e) => 
-                setSteps (e.target.value)} placeholder='Add recipe steps.' 
+                SetSteps (e.target.value)} placeholder='Add recipe steps.' 
                 className="border border-gray-300 p-2 rounded mb-4 w-full" />
             <button type='submit' 
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">  
