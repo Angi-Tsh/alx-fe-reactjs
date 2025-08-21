@@ -25,14 +25,14 @@ function AddRecipeForm () {
     const [title, setTitle] = useState ('');
     const [ingredients, setIngredients] = useState('');
     const [steps, SetSteps] = useState('');
-   const [FormErrors, setFormErrors] = useState({}); //State to hold form validation errors
+   const [Errors, setErrors] = useState({}); //State to hold form validation errors
 
     const handleSubmit = (event) => {
         event.preventDefault (); //Prevents default form submission 
        
         //Validate the form fields
         const errors = validate(title, steps, ingredients); 
-        setFormErrors(errors); //Set the errors in state
+        setErrors(errors); //Set the errors in state
        if (Object.keys(errors).length === 0) {
         //Log the recipe data to the console if validation passes, clear erros and logs data.
     console.log ("Recipe added:", { title, ingredients: IngredientsArray, steps });
@@ -55,12 +55,12 @@ function AddRecipeForm () {
                 className="border border-gray-300 p-2 rounded mb-4 w-full" 
             />
             
-            {FormErrors.ingredients && <p className="text-red-500 mb-4">{FormErrors.ingredients}</p>}
+            {Errors.ingredients && <p className="text-red-500 mb-4">{Errors.ingredients}</p>}
         
             <textarea value={steps} onChange={(e) => 
                 SetSteps (e.target.value)} placeholder='Add recipe steps.' 
                 className="border border-gray-300 p-2 rounded mb-4 w-full" />
-            {FormErrors.steps && <p className="text-red-500 mb-4">{FormErrors.steps}</p>}
+            {Errors.steps && <p className="text-red-500 mb-4">{Errors.steps}</p>}
             <button type='submit' 
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">  
                 Submit
