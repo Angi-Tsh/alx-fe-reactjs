@@ -1,20 +1,39 @@
 import React, { useState } from 'react';
 
+
+//Checks if the title, steps, and ingredients are valid
+const validate = (title, steps, ingredients) => {
+    const errors = {}; 
+    if (!title.trim()) {
+        errors.title = "Title is required.";
+    }
+    if (!steps.trim()) {
+        errors.steps = "Steps are required.";
+    };
+     //Make sure there are at least two ingredients
+    const IngredientsArray = ingredients.split(',').filter(item => item.trim()!==''); //Splits the ingredients string into an array, removing any empty items
+            if (IngredientsArray.length = 0){
+                errors.ingredients = 'Please enter at least one ingredient.';
+            } else if (IngredientsArray.length < 2) {
+                errors.ingredients ='Please enter at least two ingredients, seperate by comma.'
+            }
+    return errors;
+        };
+
+
 function AddRecipeForm () {
     const [title, setTitle] = useState ('');
     const [ingredients, setIngredients] = useState('');
     const [steps, SetSteps] = useState('');
-    const [errors, setErrors] = useState('');
+   const [FormErrors, setFormErrors] = useState({}); //State to hold form validation errors
 
     const handleSubmit = (event) => {
         event.preventDefault (); //Prevents default form submission 
-        //Make sure there are at least two ingredients
-    const IngredientsArray = ingredients.split(',').filter(item => item.trim()!==''); //Splits the ingredients string into an array, removing any empty items
-            if (IngredientsArray.length < 2) {
-                setErrors('Please enter at least two ingredients.');}
-            else {
-                setErrors('');} //Clear error if the validation passes
-        
+       
+        //Validate the form fields
+        const errors = validate(title, steps, ingredients); 
+        setFormErrors(errors); //Set the errors in state
+       if (Object.keys(errors).length === 0) {
         //Log the recipe data to the console if validation passes, clear erros and logs data.
     console.log ("Recipe added:", { title, ingredients: IngredientsArray, steps });
         
@@ -22,7 +41,7 @@ function AddRecipeForm () {
         setTitle('');
         setIngredients('');    
         SetSteps('');
-
+       }
     };
 
     return (
@@ -36,11 +55,12 @@ function AddRecipeForm () {
                 className="border border-gray-300 p-2 rounded mb-4 w-full" 
             />
             
-            {errors && <p className="text-red-500 mb-4">{errors}</p>}
+            {FormErrors.ingredients && <p className="text-red-500 mb-4">{FormErrors.ingredients}</p>}
         
             <textarea value={steps} onChange={(e) => 
                 SetSteps (e.target.value)} placeholder='Add recipe steps.' 
                 className="border border-gray-300 p-2 rounded mb-4 w-full" />
+            {FormErrors.steps && <p className="text-red-500 mb-4">{FormErrors.steps}</p>}
             <button type='submit' 
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">  
                 Submit
