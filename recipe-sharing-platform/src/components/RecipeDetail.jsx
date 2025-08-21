@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; // Import useParams to get the recipe ID from the URL
 
+
 function RecipeDetail () { //id will not be used as a prop,as we will use useParams.
     const [recipe, setRecipe] = useState(null);   
     const { id } = useParams(); // Get the recipe ID from the URL parameters
