@@ -4,12 +4,12 @@ import * as Yup from "yup";
 
 // Define the validation schema using Yup
 const validationSchema = Yup.object({
-    userName: Yup.string()
+    username: Yup.string()
         .matches(
             /^[a-zA-Z0-9_]+$/,
-            'Username must be one word and contain only letters, numbers, or underscores.'
+            'username must be one word and contain only letters, numbers, or underscores.'
         )
-        .required('Username is required.'),
+        .required('username is required.'),
     email: Yup.string()
         .email('Invalid email address.')
         .required('Email address is required.'),
@@ -21,7 +21,7 @@ const validationSchema = Yup.object({
 const formikForm = () => {
     // Initial values for the form fields
     const initialValues = {
-        userName: '',
+        username: '',
         email: '',
         password: '',
     };
@@ -49,16 +49,16 @@ const formikForm = () => {
             >
                 {({ isSubmitting }) => (
                     <Form className="space-y-4">
-                        {/* Username Field */}
+                        {/* username Field */}
                         <div>
-                            <label htmlFor="userName" className="block text-sm font-medium text-gray-700">Username</label>
+                            <label htmlFor="username" className="block text-sm font-medium text-gray-700">username</label>
                             <Field
                                 type="text"
-                                id="userName"
-                                name="userName"
+                                id="username"
+                                name="username"
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                             />
-                            <ErrorMessage name="userName" component="div" className="text-red-500 text-sm mt-1" />
+                            <ErrorMessage name="username" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
 
                         {/* Email Field */}

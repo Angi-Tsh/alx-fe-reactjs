@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 
 function RegistrationForm (){
-    const [userName, setUserName] = useState('');
+    const [username, setusername] = useState('');
     const [email, setEmail] = useState ('');
     const [password,setPassword] = useState ('');
 
@@ -12,14 +12,14 @@ function RegistrationForm (){
         e.preventDefault(); // Prevents the default form submission and page reload
 
     useEffect (()=>{
-        if (!userName || !email || !password)
+        if (!username || !email || !password)
             return;
         setError("Please fill in all fields.");
 
         // Clear any previous errors
         setError('');
 
-    console.log("Form submitted successfully:", { userName, email, password });
+    console.log("Form submitted successfully:", { username, email, password });
 
     })
 
@@ -30,9 +30,9 @@ return (
         <form onSubmit={ handleSubmit}>
         <input type="text"
         placeholder="One word of Numbers, letters and underscore only"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}>
-        <p>Username</p>
+        value={username}
+        onChange={(e) => setusername(e.target.value)}>
+        <p>username</p>
         </input>
 
         <input type="text"
