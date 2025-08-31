@@ -20,6 +20,10 @@ function RegistrationForm (){
             return;
             setErrors ("Please fill in all fields.")
 
+        if (!password)
+            return;
+            setErrors ("Please fill in all fields.")
+
         // Clear any previous errors
         setErrors('');
 
