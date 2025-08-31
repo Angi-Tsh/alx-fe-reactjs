@@ -12,9 +12,13 @@ function RegistrationForm (){
         e.preventDefault(); // Prevents the default form submission and page reload
 
     useEffect (()=>{
-        if (!username || !email || !password)
+        if (!username )
             return;
         setErrors("Please fill in all fields.");
+
+        if (!email)
+            return;
+            setErrors ("Please fill in all fields.")
 
         // Clear any previous errors
         setErrors('');
