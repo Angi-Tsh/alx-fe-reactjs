@@ -26,7 +26,7 @@ const formikForm = () => {
 
     // Function to handle form submission
     const onSubmit = (values, { setSubmitting, resetForm }) => {
-        // Here you can add your API call or other submission logic
+        // Here you can add your API call or other submissiocd..n logic
         console.log("Form submitted successfully!", values);
         
         // Simulating an async process
