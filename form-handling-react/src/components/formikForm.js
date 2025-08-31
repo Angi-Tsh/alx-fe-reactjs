@@ -10,12 +10,10 @@ const validationSchema = Yup.object({
             'username must be one word and contain only letters, numbers, or underscores.'
         )
         .required('username is required.'),
-    email: Yup.string()
-        .email('Invalid email address.')
-        .required('Email address is required.'),
-    password: Yup.string()
-        .min(8, 'Password must be at least 8 characters long.')
-        .required('Password is required.'),
+    email: Yup.string().required('Email address is required.')
+        .email('Invalid email address.'),
+    password: Yup.string().required('Password is required.')
+        .min(8, 'Password must be at least 8 characters long.'),
 });
 
 const formikForm = () => {
