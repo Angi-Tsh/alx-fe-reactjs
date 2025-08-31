@@ -5,7 +5,7 @@ function RegistrationForm (){
     const [email, setEmail] = useState ('');
     const [password,setPassword] = useState ('');
 
-    const [error, setError] = useState ('');
+    const [errors, setErrors] = useState ('');
 
      // Function to handle form submission
     const handleSubmit = (e) => {
@@ -14,10 +14,10 @@ function RegistrationForm (){
     useEffect (()=>{
         if (!username || !email || !password)
             return;
-        setError("Please fill in all fields.");
+        setErrors("Please fill in all fields.");
 
         // Clear any previous errors
-        setError('');
+        setErrors('');
 
     console.log("Form submitted successfully:", { username, email, password });
 
